@@ -19,14 +19,42 @@ def knapsackProblemBruteForce(m, p, Wmax):
                     currentValue += p[j]
         
         maxValue = max(currentValue, maxValue)
-    
     return maxValue
 
 
-def generateKnapsackProblems():
+def sortElements(m, p):
+    n = len(m)
+    for i in range(n):
+        for j in range(n-1):
+            if p[j]/m[j] < p[j+1]/m[j+1]:
+                tempValue = p[j+1] 
+                tempWeight = m[j+1]
+                p[j+1] = p[j]
+                m[j+1] = m[j]
+                p[j] = tempValue
+                m[j] = tempWeight
+    return (m,p)
+
+
+def packElemetsUsingPMRatio(m,p, Wmax):
+    m, p = sortElements(m, p)
+    n = len(m)
+    currentWeight = 0
+    maxValue = 0
+    for i in range(n):
+        if currentWeight + m[i] <= Wmax:
+            currentWeight += m[i]
+            maxValue += p[i]
+        else:
+            break
+    return maxValue
+
+
+
+def generateKnapsackProblems(amount):
     weightRow = np.array([], dtype=int)
     valueRow = np.array([], dtype=int)
-    for i in range(24):
+    for i in range(amount):
         randomWeight = random.randint(1,10)
         weightRow = np.append(weightRow, [randomWeight])
         randomValue = random.randint(1,20)
@@ -34,10 +62,16 @@ def generateKnapsackProblems():
     return weightRow, valueRow
 
 if __name__ == "__main__":
-    weights, values = generateKnapsackProblems()
-    WMAX = int(np.sum(weights)/2)
+    amount = 6
+    weights, values = generateKnapsackProblems(amount)
+    Wmax = int(np.sum(weights)/2)
     start = time.process_time()
-    knapsackProblemBruteForce(weights,values,WMAX)
+    packElemetsUsingPMRatio(weights,values,Wmax)
+    end = time.process_time()
+    total = end - start
+    print("{0:02f}s \n".format(total))
+    start = time.process_time()
+    knapsackProblemBruteForce(weights,values,Wmax)
     end = time.process_time()
     total = end - start
     print("{0:02f}s".format(total))
