@@ -9,6 +9,11 @@ def f2(x):
     x2 = x[1]
     return x1**2 + x2**2 -x1*x2
 
+def booth(x):
+    x1 = x[0]
+    x2 = x[1]
+    return (x1+2*x2-7)**2+(2*x1+x2-5)**2
+
 def gradientDescentMethod(dimensionality, function, beta=0.1):
     UPPER_BOUND = 100
     x = np.random.uniform(-UPPER_BOUND, UPPER_BOUND, size=dimensionality)
@@ -19,6 +24,6 @@ def gradientDescentMethod(dimensionality, function, beta=0.1):
         x = x - beta*gradient
     return x
 
-result = gradientDescentMethod(dimensionality=2, function=f2)
+result = gradientDescentMethod(dimensionality=2, function=booth)
 res = [f"{result[i]:.3f}" for i in range(len(result))]
 print(f"Optymalny wynik:", res)
