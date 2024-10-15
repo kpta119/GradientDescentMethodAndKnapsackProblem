@@ -11,18 +11,23 @@ def booth(x):
 def ff(x):
     return np.sum(x**2)
 
-def gradientDescentMethod(function, dimensionality=2, beta=0.01):
+def gradientDescentMethod(function, maxIterations, dimensionality=10, beta=0.00000001):
     UPPER_BOUND = 100
     x = np.random.uniform(-UPPER_BOUND, UPPER_BOUND, size=dimensionality)
     grad_fct = grad(function)
     gradient = grad_fct(x)
+    iteration = 0
     while np.linalg.norm(gradient) > 1e-5:
         xPrevious = x
         gradient = grad_fct(x)
         x = x - beta*gradient
+        x = np.clip(x, -UPPER_BOUND, UPPER_BOUND)
         changeOnAxisX = x[0] - xPrevious[0]
         changeOnAxisY = x[1] - xPrevious[1]
-        plt.arrow(xPrevious[0],xPrevious[1],changeOnAxisX, changeOnAxisY, head_width=1, head_length=1, fc='k', ec='k' )
+        plt.arrow(xPrevious[0],xPrevious[1],changeOnAxisX, changeOnAxisY, head_width=1, head_length=1, fc='k', ec='k')
+        iteration += 1
+        if iteration > maxIterations:
+            break
     return x
 
 def drawPlot(function):
@@ -39,14 +44,14 @@ def drawPlot(function):
         for j in range(X.shape[1]):
             Z[i, j] = q(np.array([X[i, j], Y[i, j]]))
             
-    plt.contour(X, Y, Z, 20)
+    plt.contour(X, Y, Z, 30)
 
 
 
 
 def main():
     drawPlot(f1)
-    gradientDescentMethod(f1, 10)
+    gradientDescentMethod(f1, 1000)
     plt.show()
 
 if __name__ == "__main__":

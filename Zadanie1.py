@@ -61,7 +61,9 @@ def generateKnapsackProblems(amount):
         valueRow = np.append(valueRow, [randomValue])
     return weightRow, valueRow
 
-if __name__ == "__main__":
+
+
+def main():
     amount = 6
     weights, values = generateKnapsackProblems(amount)
     Wmax = int(np.sum(weights)/2)
@@ -75,4 +77,7 @@ if __name__ == "__main__":
     end = time.process_time()
     total = end - start
     print("{0:02f}s".format(total))
+
+if __name__ == "__main__":
+    main()
     
