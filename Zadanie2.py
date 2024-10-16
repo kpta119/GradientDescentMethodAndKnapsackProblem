@@ -8,8 +8,6 @@ def booth(x):
     x2 = x[1]
     return (x1+2*x2-7)**2+(2*x1+x2-5)**2
 
-def ff(x):
-    return np.sum(x**2)
 
 def gradientDescentMethod(function, maxIterations, dimensionality=10, beta=0.00000001):
     UPPER_BOUND = 100
@@ -45,6 +43,7 @@ def drawPlot(function):
             Z[i, j] = q(np.array([X[i, j], Y[i, j]]))
             
     plt.contour(X, Y, Z, 30)
+    plt.title(f"Function: {function.__name__}" )
 
 
 
