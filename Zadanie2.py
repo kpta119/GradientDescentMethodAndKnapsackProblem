@@ -44,6 +44,8 @@ def drawPlot(function):
             
     plt.contour(X, Y, Z, 30)
     plt.title(f"Function: {function.__name__}" )
+    plt.xlabel("x1")
+    plt.ylabel("x2")
 
 
 
