@@ -2,6 +2,7 @@ from autograd import grad
 import autograd.numpy as np
 from cec2017.functions import f1, f2, f3
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 
 def booth(x):
     x1 = x[0]
@@ -42,7 +43,10 @@ def drawPlot(function):
         for j in range(X.shape[1]):
             Z[i, j] = q(np.array([X[i, j], Y[i, j]]))
             
-    plt.contour(X, Y, Z, 30)
+    contour = plt.contour(X, Y, Z, 30)
+    fmt = ticker.FormatStrFormatter("%.1e")
+    plt.clabel(contour, inline=True, fontsize=6, fmt=fmt)
+
     plt.title(f"Function: {function.__name__}" )
     plt.xlabel("x1")
     plt.ylabel("x2")
@@ -51,8 +55,8 @@ def drawPlot(function):
 
 
 def main():
-    drawPlot(f1)
-    gradientDescentMethod(f1, 1000)
+    drawPlot(f3)
+    gradientDescentMethod(f3, 10000)
     plt.show()
 
 if __name__ == "__main__":
