@@ -2,9 +2,7 @@ import numpy as np
 import random
 import time
 
-m = np.array([8, 3, 5, 2]) #masa przedmiotów
-M = np.sum(m)/2 #niech maksymalna masa plecaka będzie równa połowie masy przedmiotów
-p = np.array([16, 8, 9, 6]) #wartość przedmiotów
+
 
 def knapsackProblemBruteForce(m, p, Wmax):
     n = len(m)
@@ -64,19 +62,22 @@ def generateKnapsackProblems(amount):
 
 
 def main():
-    amount = 6
+    m = np.array([8, 3, 5, 2]) #masa przedmiotów
+    M = np.sum(m)/2 #niech maksymalna masa plecaka będzie równa połowie masy przedmiotów
+    p = np.array([16, 8, 9, 6]) #wartość przedmiotów
+    amount = 16
     weights, values = generateKnapsackProblems(amount)
     Wmax = int(np.sum(weights)/2)
     start = time.process_time()
     packElemetsUsingPMRatio(weights,values,Wmax)
     end = time.process_time()
     total = end - start
-    print("{0:02f}s \n".format(total))
+    print(f"{total:.8f}s \n")
     start = time.process_time()
     knapsackProblemBruteForce(weights,values,Wmax)
     end = time.process_time()
     total = end - start
-    print("{0:02f}s".format(total))
+    print(f"{total:.8f}s \n")
 
 if __name__ == "__main__":
     main()

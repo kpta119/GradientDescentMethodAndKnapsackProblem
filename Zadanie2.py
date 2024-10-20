@@ -10,7 +10,7 @@ def booth(x):
     return (x1+2*x2-7)**2+(2*x1+x2-5)**2
 
 
-def gradientDescentMethod(function, maxIterations, dimensionality=10, beta=0.00000001):
+def gradientDescentMethod(function, maxIterations, dimensionality=10, beta=0.01):
     UPPER_BOUND = 100
     x = np.random.uniform(-UPPER_BOUND, UPPER_BOUND, size=dimensionality)
     grad_fct = grad(function)
@@ -23,7 +23,7 @@ def gradientDescentMethod(function, maxIterations, dimensionality=10, beta=0.000
         x = np.clip(x, -UPPER_BOUND, UPPER_BOUND)
         changeOnAxisX = x[0] - xPrevious[0]
         changeOnAxisY = x[1] - xPrevious[1]
-        plt.arrow(xPrevious[0],xPrevious[1],changeOnAxisX, changeOnAxisY, head_width=1, head_length=1, fc='k', ec='k')
+        plt.arrow(xPrevious[0],xPrevious[1],changeOnAxisX, changeOnAxisY, head_width=2, head_length=1, fc='k', ec='k')
         iteration += 1
         if iteration > maxIterations:
             break
@@ -55,8 +55,11 @@ def drawPlot(function):
 
 
 def main():
-    drawPlot(f3)
-    gradientDescentMethod(f3, 10000)
+    function = f2
+    drawPlot(function)
+    x = gradientDescentMethod(function, 10000, 10, 0.000000001)
+    print(x)
+    print(function(x))
     plt.show()
 
 if __name__ == "__main__":
