@@ -55,9 +55,9 @@ def drawPlot(function):
 
 
 def main():
-    function = f2
+    function = booth
     drawPlot(function)
-    x = gradientDescentMethod(function, 10000, 10, 0.000000001)
+    x = gradientDescentMethod(function, 10000, 2, 0.01)
     print(x)
     print(function(x))
     plt.show()
