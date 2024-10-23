@@ -15,7 +15,7 @@ def knapsackProblemBruteForce(m, p, Wmax):
                 if currentWeight + m[j] <= Wmax:
                     currentWeight += m[j]
                     currentValue += p[j]
-        
+
         maxValue = max(currentValue, maxValue)
     return maxValue
 
@@ -25,7 +25,7 @@ def sortElements(m, p):
     for i in range(n):
         for j in range(n-1):
             if p[j]/m[j] < p[j+1]/m[j+1]:
-                tempValue = p[j+1] 
+                tempValue = p[j+1]
                 tempWeight = m[j+1]
                 p[j+1] = p[j]
                 m[j+1] = m[j]
@@ -68,17 +68,16 @@ def main():
     amount = 16
     weights, values = generateKnapsackProblems(amount)
     Wmax = int(np.sum(weights)/2)
-    start = time.process_time()
+    # start = time.process_time()
     packElemetsUsingPMRatio(weights,values,Wmax)
-    end = time.process_time()
-    total = end - start
-    print(f"{total:.8f}s \n")
-    start = time.process_time()
+    # end = time.process_time()
+    # total = end - start
+    # print(f"{total:.8f}s \n")
+    # start = time.process_time()
     knapsackProblemBruteForce(weights,values,Wmax)
-    end = time.process_time()
-    total = end - start
-    print(f"{total:.8f}s \n")
+    # end = time.process_time()
+    # total = end - start
+    # print(f"{total:.8f}s \n")
 
 if __name__ == "__main__":
     main()
-    
