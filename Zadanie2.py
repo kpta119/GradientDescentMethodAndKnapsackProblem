@@ -42,7 +42,7 @@ def drawPlot(function):
     for i in range(X.shape[0]):
         for j in range(X.shape[1]):
             Z[i, j] = q(np.array([X[i, j], Y[i, j]]))
-            
+
     contour = plt.contour(X, Y, Z, 30)
     fmt = ticker.FormatStrFormatter("%.1e")
     plt.clabel(contour, inline=True, fontsize=6, fmt=fmt)
@@ -55,11 +55,9 @@ def drawPlot(function):
 
 
 def main():
-    function = f1
+    function = booth
     drawPlot(function)
-    x = gradientDescentMethod(function, 10000, 10, 1e-8)
-    print(x)
-    print(function(x))
+    x = gradientDescentMethod(function, 10000, 2, 0.01)
     plt.show()
 
 if __name__ == "__main__":
