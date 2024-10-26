@@ -67,7 +67,7 @@ def main():
     amount = 16
     weights, values = generateKnapsackProblems(amount)
     Wmax = int(np.sum(weights)/2)
-    # start = time.process_time()
+    start = time.process_time()
     packElemetsUsingPMRatio(weights,values,Wmax)
     # end = time.process_time()
     # total = end - start
