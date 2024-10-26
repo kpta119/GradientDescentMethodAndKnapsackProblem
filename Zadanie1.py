@@ -69,9 +69,9 @@ def main():
     Wmax = int(np.sum(weights)/2)
     start = time.process_time()
     packElemetsUsingPMRatio(weights,values,Wmax)
-    # end = time.process_time()
-    # total = end - start
-    # print(f"{total:.8f}s \n")
+    end = time.process_time()
+    total = end - start
+    print(f"{total:.8f}s \n")
     # start = time.process_time()
     knapsackProblemBruteForce(weights,values,Wmax)
     # end = time.process_time()
