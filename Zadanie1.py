@@ -43,8 +43,7 @@ def packElemetsUsingPMRatio(m,p, Wmax):
         if currentWeight + m[i] <= Wmax:
             currentWeight += m[i]
             maxValue += p[i]
-        else:
-            break
+        
     return maxValue
 
 
